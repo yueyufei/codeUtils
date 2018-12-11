@@ -25,6 +25,7 @@ public class Unzip {
 	 * @param descDir
 	 * @throws Exception
 	 */
+	@SuppressWarnings({ "rawtypes", "resource" })
 	public static void unZipFiles(File zipFile, String descDir) throws Exception {
 		System.out.println("******************解压开始********************");
 		File pathFile = new File(descDir);
