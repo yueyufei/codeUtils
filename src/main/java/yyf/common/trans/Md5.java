@@ -23,7 +23,11 @@ public class Md5 {
 	}
 
 	public static void main(String[] args) {
-		String md5 = getMD5("九月九日", "SHA");
+		String str = String.valueOf(169);
+		long startTime = 1545235200000l;
+		long endTime = 1545753599000l;
+		str = str + String.valueOf(startTime) + String.valueOf(endTime);
+		String md5 = getMD5(str, "MD5");
 		System.out.println(md5);
 	}
 
