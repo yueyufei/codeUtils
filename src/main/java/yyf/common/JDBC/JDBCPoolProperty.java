@@ -1,9 +1,9 @@
-package yyf.comment.configuration;
+package yyf.common.JDBC;
 
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public class CustomProperty {
+public class JDBCPoolProperty {
 	public static final String datasourceJdbcUrl;
 	public static final String datasourceDriverClassname;
 	public static final String datasourceUsername;
@@ -16,10 +16,9 @@ public class CustomProperty {
 	public static final Long datasourceMaxLifetime;
 	public static final Integer datasourceMaximunSize;
 	
-	public static final String esAddress;
 
 
-	private static String FILE_NAME = "viewpoint.properties";
+	private static String FILE_NAME = "conf/JDBCPool.properties";
 	static {
 		Properties props = new Properties();
 		try {
@@ -35,9 +34,6 @@ public class CustomProperty {
 			datasourceIdleTimeout = Long.parseLong(props.getProperty("datasource.idle.timeout"));
 			datasourceMaxLifetime = Long.parseLong(props.getProperty("datasource.max.lifetime"));
 			datasourceMaximunSize = Integer.parseInt(props.getProperty("datasource.maximum.pool.size"));
-			
-			esAddress = props.getProperty("es.address");
-
 			
 		} catch (Exception e) {
 			e.printStackTrace();

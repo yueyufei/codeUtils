@@ -66,6 +66,5 @@ public class JsonUtils {
 		JsonElement jsonElem = gson.fromJson(jsonStr, JsonElement.class);
 		return jsonElem;
 	}
-
     
 }

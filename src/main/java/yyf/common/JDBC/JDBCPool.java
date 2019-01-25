@@ -4,8 +4,6 @@ import java.sql.Connection;
 
 import com.zaxxer.hikari.HikariDataSource;
 
-import yyf.comment.configuration.CustomProperty;
-
 public class JDBCPool {
 	private HikariDataSource HikariPool;
 	private static JDBCPool jdbcPool = null;
@@ -20,17 +18,17 @@ public class JDBCPool {
 	private void initDB() {
 		try {
 			HikariPool = new HikariDataSource();
-			HikariPool.setJdbcUrl(CustomProperty.datasourceJdbcUrl);
-			HikariPool.setDriverClassName(CustomProperty.datasourceDriverClassname);
-			HikariPool.setUsername(CustomProperty.datasourceUsername);
-			HikariPool.setPassword(CustomProperty.datasourcePassword);
-			HikariPool.setReadOnly(CustomProperty.datasourceReadonly);
-			HikariPool.setConnectionTimeout(CustomProperty.datasourceConnectionTimeout);
-			HikariPool.setValidationTimeout(CustomProperty.datasourceValidationTimeout);
-			HikariPool.setLoginTimeout(CustomProperty.datasourceLoginTimeout);
-			HikariPool.setIdleTimeout(CustomProperty.datasourceIdleTimeout);
-			HikariPool.setMaxLifetime(CustomProperty.datasourceMaxLifetime);
-			HikariPool.setMaximumPoolSize(CustomProperty.datasourceMaximunSize);
+			HikariPool.setJdbcUrl(JDBCPoolProperty.datasourceJdbcUrl);
+			HikariPool.setDriverClassName(JDBCPoolProperty.datasourceDriverClassname);
+			HikariPool.setUsername(JDBCPoolProperty.datasourceUsername);
+			HikariPool.setPassword(JDBCPoolProperty.datasourcePassword);
+			HikariPool.setReadOnly(JDBCPoolProperty.datasourceReadonly);
+			HikariPool.setConnectionTimeout(JDBCPoolProperty.datasourceConnectionTimeout);
+			HikariPool.setValidationTimeout(JDBCPoolProperty.datasourceValidationTimeout);
+			HikariPool.setLoginTimeout(JDBCPoolProperty.datasourceLoginTimeout);
+			HikariPool.setIdleTimeout(JDBCPoolProperty.datasourceIdleTimeout);
+			HikariPool.setMaxLifetime(JDBCPoolProperty.datasourceMaxLifetime);
+			HikariPool.setMaximumPoolSize(JDBCPoolProperty.datasourceMaximunSize);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
