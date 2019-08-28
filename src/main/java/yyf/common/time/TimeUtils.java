@@ -1,7 +1,12 @@
 package yyf.common.time;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class TimeUtils {
 	
@@ -47,7 +52,74 @@ public class TimeUtils {
 		Long value = currTime - remainders+timeFlag;
 		return value;
 	}
+	/**
+     * 两个时间相差距离多少天多少小时多少分多少秒
+     * @param strTime1 时间参数 1 格式：2016-06-22 18:21:20
+     * @param strTime2 时间参数 2 格式：2016-06-22 17:21:20
+     * @param timeFormat 日期格式 yyyy-MM-dd HH:mm:ss    毫秒(yyyy-MM-dd HH:mm:ss.SSS)
+     * @return String 返回值为：xx天xx小时xx分xx秒xx毫秒
+     */
+    public static String getDifferenceTime(String strTime1, String strTime2, String timeFormat) {
+        DateFormat df = new SimpleDateFormat(timeFormat);
+        Date one;
+        Date two;
+        long day = 0;
+        long hour = 0;
+        long min = 0;
+        long sec = 0;
+        long ms = 0;
+        try {
+        	one = df.parse(strTime1);
+        	two = df.parse(strTime2);
+            long time1 = one.getTime();
+            long time2 = two.getTime();
+            long diff ;
+            if(time1 < time2) {
+                diff = time2 - time1;
+            } else {
+                diff = time1 - time2;
+            }
+            day = diff / (24 * 60 * 60 * 1000);
+            hour = (diff / (60 * 60 * 1000) - day * 24);
+            min = ((diff / (60 * 1000)) - day * 24 * 60 - hour * 60);
+            sec = (diff/1000-day*24*60*60-hour*60*60-min*60);
+            ms = (diff - day * 24 * 60 * 60 * 1000 - hour * 60 * 60 * 1000 - min * 60 * 1000 - sec * 1000);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+//        return day + "天" + hour + "小时" + min + "分" + sec + "秒";
+        return day + "天" + hour + "小时" + min + "分" + sec + "秒" + ms + "毫秒";
+    }
 	
-
-
+	public static Map<String, Integer> timeRange(String startTime, String endTime, String interval) {
+		Map<String, Integer> timeStatisticMap = new LinkedHashMap<>();
+		String format = "yyyy-MM-dd";
+		int filed = Calendar.DAY_OF_YEAR;
+		if ("month".equals(interval)) {
+			format = "yyyy-MM";
+			filed = Calendar.MONTH;
+		} else if ("year".equals(interval)) {
+			format = "yyyy";
+			filed = Calendar.YEAR;
+		} else {
+			// donothing
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		try {
+			Date startDate = sdf.parse(startTime);
+			Date endDate = sdf.parse(endTime);
+			Calendar tempStart = Calendar.getInstance();
+			tempStart.setTime(startDate);
+			while (startDate.getTime() <= endDate.getTime()) {
+				String dateStr = sdf.format(startDate);
+				timeStatisticMap.put(dateStr, 0);
+				System.out.println(dateStr);
+				tempStart.add(filed, 1);
+				startDate = tempStart.getTime();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return timeStatisticMap;
+	}
 }

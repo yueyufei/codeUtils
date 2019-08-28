@@ -1,4 +1,4 @@
-package yyf.comment.collections;
+package yyf.common.collections;
 
 import java.util.ArrayList;
 import java.util.List;

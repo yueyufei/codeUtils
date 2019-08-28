@@ -276,8 +276,8 @@ public class Regex {
 		return str;
 	}
 	public static void main(String[] args) {
-		String str = "海通证券-南京高科（600064）公司半年报：地产结转推动公司业绩增长-（980808） ";
-		String line = regix(str);
+		String str = "忎腑鍥介摱琛屼繚闄╃洃鐫ｇ鐞嗗鍛樹細瑗勯槼鐩戠鍒嗗眬鎵瑰噯锛屼腑鍥介偖鏀垮偍钃勯摱琛岃偂浠芥湁闄愬叕鍙歌闃冲競瑗勫窞鍖烘 敮琛屾洿鍚嶄负涓浗閭斂鍌ㄨ搫閾惰鑲′唤鏈夐檺鍏徃瑗勯槼甯傝埅绌鸿矾鏀锛岀幇浜堜互鍏憡銆/font>銆2019骞鏈7鏃/font>銆鏈烘瀯鍚嶇О锛氫腑鍥介偖鏀垮偍钃勯摱琛岃偂浠芥湁闄愬叕鍙歌闃冲競鑸┖璺敮琛/font>銆璁剧珛鏃ユ湡锛008骞5鏈6鏃/font>銆鍙戣瘉鏃ユ湡锛019骞3鏈7鏃/font>銆鏈烘瀯鍦板潃锛氭箹鍖楃渷瑗勯槼甯傝宸炲尯浜ら璺鍙/font>銆鏈烘瀯缂栫爜锛欱0018S342060076銆璁稿彲璇佹祦姘村彿锛0596498銆鑱旂郴鐢佃瘽锛710-3341811銆鍙戣瘉鏈哄叧锛氫腑鍥介摱琛屼繚闄╃洃鐫ｇ鐞嗗鍛樹細瑗勯槼鐩戠鍒嗗眬銆浠ヤ笂鐩稿叧淇℃伅鍙湪涓浗閾惰淇濋櫓鐩戠潱绠 ＄悊濮斿憳浼氱綉绔欎笂锛ahref=\"http://www.cbrc.gov.cn\"target=\"_blank\">www.cbrc.gov.cn锛夋煡璇";
+		Boolean line = regexBaseChinese(str);
 		System.out.println(line);
 	}
 

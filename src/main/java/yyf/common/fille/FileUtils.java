@@ -7,12 +7,48 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 
 public class FileUtils {
+		@SuppressWarnings({ "unchecked" })
+	private List<String> readFileInJar(String path) {
+		InputStream is = null;
+		InputStreamReader isr = null;
+		;
+		BufferedReader br = null;
+
+		List<String> lines = new ArrayList<>();
+		Object obj;
+		is = getClass().getResourceAsStream(path);
+		isr = new InputStreamReader(is, Charset.forName("UTF-8"));
+		br = new BufferedReader(isr);
+		do {
+			String line = null;
+			try {
+				line = br.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if (line == null)
+				break;
+			lines.add(line);
+		} while (true);
+		obj = lines;
+		try {
+			br.close();
+			isr.close();
+			is.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return (List<String>) obj;
+	}
 	public static String readFile(String path) throws IOException {
 		File file = new File(path);
 		FileReader fr = new FileReader(file);

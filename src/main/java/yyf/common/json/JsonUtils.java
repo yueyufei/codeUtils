@@ -30,9 +30,14 @@ public class JsonUtils {
 		return str;
 	}
 	
-    public static String javabeanToJson(Object object) {
+    public static String javabeanToJsonStr(Object object) {
         String json = gson.toJson(object);
         return json;
+    }
+    public static JsonObject javabeanToJson(Object object) {
+        String json = gson.toJson(object);
+        JsonObject str2Obj = str2Obj(json);
+        return str2Obj;
     }
     
     public static <T> Collection<T> jsonArray2Collect(JsonArray jsonArray,Collection<T> collection){
@@ -47,11 +52,15 @@ public class JsonUtils {
     }
     
     public static <K,V> Map<K, V> jsonStr2Map(String str,Map<K, V> map){
-    	
 		Map<K, V> resultMap = gson.fromJson(str, map.getClass());
     	return resultMap;
     }
     
+	public static <K, V> String map2Json(Map<K, V> map) {
+		String json = gson.toJson(map);
+		return json;
+	}
+
     public static Object jsonStr2JavaBean(String str,Object object) {
     	 Object resultObj = gson.fromJson(str, object.getClass());
     	 return resultObj;
