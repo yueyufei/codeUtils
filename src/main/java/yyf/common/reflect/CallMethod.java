@@ -78,6 +78,6 @@ public class CallMethod {
 	
 	public static void main(String[] args) {
 //		System.out.println( callMethod(new CallMethod(), "call" , new Class<?>[]{Integer.class}, new Object[]{ 1523 } ,10,TimeUnit.SECONDS) ) ; 
-		callMethod(new CallMethod(), "call" , null, null ,30,TimeUnit.SECONDS); 
+		callMethod(new CallMethod(), "call" , null, null ,10,TimeUnit.SECONDS); 
 	}
 }

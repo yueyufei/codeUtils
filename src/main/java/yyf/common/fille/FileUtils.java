@@ -4,11 +4,14 @@ package yyf.common.fille;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +19,8 @@ import java.util.UUID;
 
 
 public class FileUtils {
-		@SuppressWarnings({ "unchecked" })
-	private List<String> readFileInJar(String path) {
+	@SuppressWarnings({ "unchecked" })
+	public List<String> readFileInJar(String path) {
 		InputStream is = null;
 		InputStreamReader isr = null;
 		;
@@ -164,7 +167,6 @@ public class FileUtils {
         return UUID.randomUUID().toString().replace("-", "");
     }
 
-	@SuppressWarnings("unused")
 	public static List<String> readFileByLines(String fileName) {
 		List<String> lines = new ArrayList<String>();
 		File file = new File(fileName);
@@ -178,11 +180,9 @@ public class FileUtils {
 			fr = new FileReader(file);
 			reader = new BufferedReader(fr);
 			String tempString = null;
-			int line = 1;
 			while ((tempString = reader.readLine()) != null) {
 				// System.out.println("line " + line + ": " + tempString);
 				lines.add(tempString);
-				line++;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -241,7 +241,6 @@ public class FileUtils {
 		return flag;
 	}
 
-	@SuppressWarnings("unused")
 	public static List<String> readFileByLines(File file) {
 		List<String> lines = new ArrayList<String>();
 		if (!file.exists()) {
@@ -254,11 +253,9 @@ public class FileUtils {
 			fr = new FileReader(file);
 			reader = new BufferedReader(fr);
 			String tempString = null;
-			int line = 1;
 			while ((tempString = reader.readLine()) != null) {
 				// System.out.println("line " + line + ": " + tempString);
 				lines.add(tempString);
-				line++;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -305,6 +302,26 @@ public class FileUtils {
 			}
 		}
 	}
-
+	public String readFileToString(File file) {
+		String encoding = "UTF-8";
+		Long filelength = file.length();
+		byte[] filecontent = new byte[filelength.intValue()];
+		try {
+			FileInputStream in = new FileInputStream(file);
+			in.read(filecontent);
+			in.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			return new String(filecontent, encoding);
+		} catch (UnsupportedEncodingException e) {
+			System.err.println("The OS does not support " + encoding);
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }

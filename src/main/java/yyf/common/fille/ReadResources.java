@@ -1,11 +1,13 @@
 package yyf.common.fille;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ReadResources {
@@ -43,6 +45,18 @@ public class ReadResources {
 		return (List<String>) obj;
 	}
 
+	
+	public List<String> getResourceField(String path) throws IOException {
+		LinkedList<String> result = new LinkedList<>();
+		InputStream in = getClass().getResourceAsStream(path);
+		DataInputStream isr = new DataInputStream(in);
+		BufferedReader d = new BufferedReader(new InputStreamReader(isr));
+		String line;
+		while ((line = d.readLine()) != null) {
+			result.addFirst(line);
+		}
+		return result;
+	}
 	public static void main(String[] args) {
 		ReadResources re = new ReadResources();
 		List<String> lines = re.readResources("/123.txt");
