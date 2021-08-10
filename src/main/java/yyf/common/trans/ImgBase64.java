@@ -16,7 +16,8 @@ public class ImgBase64 {
 	/**
      * 文件转化成base64字符串
      */
-    public static String fileToBase64(String path) {
+    @SuppressWarnings("restriction")
+	public static String fileToBase64(String path) {
         InputStream in = null;
         byte[] data = null;
         try {

@@ -58,6 +58,14 @@
 			<version>0.1.54</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+		<dependency>
+		    <groupId>org.apache.pdfbox</groupId>
+		    <artifactId>pdfbox</artifactId>
+		    <version>1.8.2</version>
+		</dependency>
+		
+		
 				
 
 	</dependencies>
