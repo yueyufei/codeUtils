@@ -12,7 +12,7 @@ import org.apache.pdfbox.util.PDFTextStripper;
 public class PdfToWord{
     public static void main(String[] args){
         try{
-            String pdfFile = "扫描全能王 2021-07-22 15.29.pdf";
+            String pdfFile = "《劳动合同书》范本(2021民法典更新版).pdf";
             PDDocument doc = PDDocument.load(new File(pdfFile));
             COSDocument document = doc.getDocument();
             int pagenumber = doc.getNumberOfPages();
